@@ -13,8 +13,9 @@ This role requires Ansible 1.9 or higher.
 Role Variables
 --------------
 
-| Name | Default | Description |
-|:-----|:--------|:------------|
+| Name            | Default | Description                   |
+|:----------------|:--------|:------------------------------|
+| dnsdist_version | 1.0.0   | Version of dnsdist to install |
 
 Dependencies
 ------------
