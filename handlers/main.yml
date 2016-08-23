@@ -1,0 +1,10 @@
+---
+# handlers file for dnsdist
+
+- name: restart dnsdist
+  become: yes
+  service:
+    name: "{{ dnsdist_service_name }}"
+    state: restarted
+  tags:
+    - dnsdist

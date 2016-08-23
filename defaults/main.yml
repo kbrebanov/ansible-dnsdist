@@ -1,0 +1,4 @@
+---
+# defaults file for dnsdist
+
+dnsdist_version: 1.0.0

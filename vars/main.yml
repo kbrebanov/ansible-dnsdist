@@ -1,0 +1,4 @@
+---
+# vars file for dnsdist
+
+dnsdist_service_name: dnsdist

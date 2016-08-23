@@ -1,0 +1,5 @@
+---
+# vars file for dnsdist (Ubuntu specific)
+
+dnsdist_packages:
+  - dnsdist*

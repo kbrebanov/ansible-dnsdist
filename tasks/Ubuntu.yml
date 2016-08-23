@@ -1,0 +1,29 @@
+---
+# tasks file for dnsdist (Ubuntu specific)
+
+- name: Install PowerDNS PGP key
+  become: yes
+  apt_key:
+    url: https://repo.powerdns.com/FD380FBB-pub.asc
+    state: present
+  tags:
+    - dnsdist
+
+- name: Add dnsdist repo
+  become: yes
+  apt_repository:
+    repo: 'deb http://repo.powerdns.com/ubuntu {{ ansible_distribution_release|lower }}-dnsdist-10 main'
+    state: present
+  tags:
+    - dnsdist
+
+- name: Install dnsdist
+  become: yes
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - "{{ dnsdist_packages }}"
+  tags:
+    - dnsdist

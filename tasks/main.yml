@@ -1,0 +1,34 @@
+---
+# tasks file for dnsdist
+
+- name: Include distribution specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
+  tags:
+    - dnsdist
+
+- include: Ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+  tags:
+    - dnsdist
+
+- name: Create dnsdist configuration file
+  become: yes
+  template:
+    src: dnsdist.conf.j2
+    dest: /etc/dnsdist/dnsdist.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart dnsdist
+  tags:
+    - dnsdist
+
+- name: Ensure dnsdist service is started and enabled on boot
+  become: yes
+  service:
+    name: "{{ dnsdist_service_name }}"
+    enabled: yes
+    state: started
+  tags:
+    - dnsdist
